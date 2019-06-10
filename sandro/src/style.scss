@@ -1,0 +1,613 @@
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700,400italic|Montserrat:400,700);
+
+$bp-nav: 850px;
+
+$color-primary: #E0AA52;
+$color-primary-drk: #BD7501;
+$color-secondary: #6388AD;
+$color-secondary-drk: #205587;
+$color-secondary-alpha: rgba($color-secondary, .4);
+$color-success: #12C96D;
+$color-alert: #FF5F47;
+
+$color-white: #FCFCFC;
+$color-ltgray: #F0F0F0;
+$color-gray: #828282;
+$color-drkgray: #454545;
+$color-black: #242424;
+
+$font-primary: "Lora", Times, serif;
+$font-primary-weight: 400;
+$font-secondary: "Montserrat", Arial, sans-serif;
+$font-secondary-weight: 400;
+$font-secondary-weight-heavy: 700;
+
+$padding: 1.6rem;
+$header-height: 3.6rem;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+*::selection {
+  background: $color-secondary-alpha;
+}
+img {
+  max-width: 100%;
+}
+
+html, body {
+  min-height: 100%;
+}
+body {
+  background: $color-white;
+  color: $color-black;
+  font-family: $font-secondary;
+  font-size: 1.2em;
+  font-weight: $font-secondary-weight;
+  @media (min-width: $bp-nav) {
+    font-size: 1.5em;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-secondary;
+  font-weight: $font-secondary-weight-heavy;
+  line-height: 1.1;
+  margin-top: 1.5em;
+}
+h1, h2 {
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+}
+p, ul, ol, blockquote {
+  font-family: $font-primary;
+  font-weight: $font-primary-weight;
+  line-height: 1.5;
+  margin-bottom: 1.4em;
+  a:hover, a:target {
+    text-decoration: underline;
+  }
+}
+p {
+  margin-top: 0;
+}
+a, a:visited {
+  color: $color-secondary-drk;
+  text-decoration: none;
+}
+ul, ol {
+  padding-left: 1.8em;
+}
+blockquote {
+  border-left: .6em solid $color-primary;
+  font-style: italic;
+  margin-left: .5em;
+  padding-left: .7em;
+  em {
+    font-style: normal;
+  }
+}
+pre {
+  background: $color-ltgray;
+  color: $color-drkgray;
+  padding: $padding/2 $padding;
+}
+code {
+  font-family: "Courier New", monospace;
+  font-size: .9em;
+}
+
+.site-header {
+  background: $color-black;
+  color: $color-white;
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 15;
+  @media (min-width: $bp-nav) {
+    height: $header-height*1.2;
+    padding-left: $padding;
+  }
+  .site-header-inside {
+    display: flex;
+  }
+  .menu-toggle,
+  .search-toggle {
+    padding: .7em;
+    height: $header-height;
+    width: $header-height;
+    &:hover {
+      svg path {
+        fill: $color-secondary;
+      }
+    }
+    svg {
+      height: 100%;
+      width: 100%;
+      path {
+        fill: $color-white;
+      }
+    }
+  }
+  .menu-toggle {
+    padding: .6em;
+    @media (min-width: $bp-nav) {
+      display: none;
+    }
+    .icon-x {
+      display: none;
+    }
+  }
+  .search-toggle {
+    @media (min-width: $bp-nav) {
+      height: $header-height*1.2;
+      padding: .7em;
+      width: $header-height*1.2;
+    }
+  }
+  .menu-toggle.is-toggled {
+    .icon-menu {
+      display: none;
+    }
+    .icon-x {
+      display: inline-block;
+    }
+  }
+  .site-branding {
+    flex-grow: 1;
+    @media (min-width: $bp-nav) {
+      align-items: baseline;
+      display: flex;
+    }
+  }
+  .site-title {
+    font-size: 1.3em;
+    letter-spacing: -.05em;
+    line-height: $header-height;
+    margin: 0;
+    text-align: center;
+    @media (min-width: $bp-nav) {
+      font-size: 1.7em;
+      line-height: $header-height*1.2;
+      text-align: left;
+    }
+    a {
+      color: $color-white;
+      transform: color .5s ease-in-out;
+    }
+    a:hover, a:target {
+      color: $color-secondary;
+      text-decoration: none;
+    }
+  }
+  .site-subtitle {
+    display: none;
+    margin: 0;
+    font-family: $font-primary;
+    font-size: .9em;
+    font-style: italic;
+    font-weight: $font-primary-weight;
+    letter-spacing: 0;
+    padding-left: .5em;
+    text-transform: none;
+    @media (min-width: $bp-nav) {
+      display: block;
+    }
+  }
+}
+
+.site-search {
+  background: $color-secondary-drk;
+  display: flex;
+  font-size: 1.3rem;
+  right: 0;
+  top: -2em;
+  padding: .8em .6em;
+  position: fixed;
+  transition: all .1s ease-in-out;
+  width: 100%;
+  z-index: 10;
+  @media (min-width: $bp-nav) {
+    max-width: 40em;
+  }
+  input[type="text"] {
+    border: 0;
+    flex-grow: 1;
+    font-size: .9em;
+    font-weight: 600;
+    margin: 0 .5em 0 0;
+    padding: .5em 1em;
+  }
+  button {
+    border: 0;
+    margin: 0 .5em 0 0;
+    min-width: 4em;
+  }
+  .search-close {
+    height: 2em;
+    padding: .3em;
+    width: 2em;
+    min-width: 2em;
+    svg {
+      height: 100%;
+      width: 100%;
+      path {
+        fill: $color-white;
+        transition: fill .1s ease-in-out;
+      }
+    }
+    &:hover {
+      svg path {
+        fill: $color-secondary;
+      }
+    }
+  }
+}
+.site-search.is-open {
+  top: $header-height;
+  @media (min-width: $bp-nav) {
+    top: $header-height*1.2;
+  }
+}
+
+.site-main {
+  margin-top: $header-height;
+  position: relative;
+  @media (min-width: $bp-nav) {
+    margin-top: $header-height*1.2;
+  }
+  .site-navigation {
+    background: $color-primary;
+    left: -14rem;
+    position: fixed;
+    height: 100%;
+    transition: left .2s ease-in-out;
+    width: 14rem;
+    z-index: 5;
+  }
+  .site-content {
+    position: relative;
+  }
+  @media (min-width: $bp-nav) {
+    .site-navigation {
+      left: 0;
+    }
+    .site-content {
+      margin-left: 14rem
+    }
+  }
+}
+.site-main.menu-open {
+  .site-navigation {
+    left: 0;
+  }
+}
+
+.site-navigation {
+  .main-navigation {
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      color: $color-black;
+      display: block;
+      font-family: $font-secondary;
+      font-size: 1.2em;
+      padding: .5em 0 .5em $padding;
+      transition: background .1s ease-in-out;
+      @media (min-width: $bp-nav) {
+        font-size: .9em;
+      }
+    }
+    a:hover, a:target {
+      background: $color-secondary;
+      text-decoration: none;
+    }
+  }
+}
+
+.site-content {
+  .site-content-inside {
+    max-width: 38em;
+    padding: $padding/2 $padding;
+    @media (min-width: $bp-nav) {
+      padding: $padding $padding*2;
+    }
+  }
+  .content-title {
+    margin-top: .5em;
+  }
+}
+
+.site-footer {
+  margin-top: 2.5em;
+  .site-footer-inside {
+    
+  }
+}
+
+/* Buttons */
+a.button,
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  background-color: $color-white;
+  border: 1px solid $color-gray;
+  color: $color-black;
+  cursor: pointer;
+  display: inline-block;
+  font-size: .9em;
+  margin-bottom: .5em;
+  margin-right: .5em;
+  padding: .5em 1em;
+  text-align: center;
+  text-decoration: none !important;
+  transition: background .1s ease-in-out,
+              border .1s ease-in-out;
+  white-space: nowrap; 
+}
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  background: $color-secondary;
+  border-color: $color-secondary;
+  outline: 0; 
+}
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  background-color: $color-primary;
+  border-color: $color-primary; 
+}
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  background-color: $color-secondary;
+  border-color: $color-secondary; 
+}
+
+/* Forms */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  background-color: #fff;
+  border: 1px solid $color-gray;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: .8em;
+  height: 2.2em;
+  margin-bottom: .8em;
+  padding: 6px 1em;
+  min-width: 60%;
+}
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; 
+}
+textarea {
+  min-height: 8em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  width: 100%;
+}
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid $color-secondary;
+  outline: 0; 
+}
+label,
+legend {
+  display: block;
+  font-weight: normal; 
+  margin-bottom: .5rem;
+}
+fieldset {
+  border-width: 0; 
+  padding: 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; 
+}
+label > .label-body {
+  display: inline-block;
+  font-weight: normal; 
+  margin-left: .5rem;
+}
+
+/* Syntax highlighting */
+body {
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #f0f0f0;
+    -webkit-text-size-adjust: none;
+  }
+
+  .hljs,
+  .hljs-subst,
+  .hljs-tag .hljs-title,
+  .nginx .hljs-title {
+    color: $color-black;
+  }
+
+  .hljs-string,
+  .hljs-title,
+  .hljs-constant,
+  .hljs-parent,
+  .hljs-tag .hljs-value,
+  .hljs-rule .hljs-value,
+  .hljs-preprocessor,
+  .hljs-pragma,
+  .hljs-name,
+  .haml .hljs-symbol,
+  .ruby .hljs-symbol,
+  .ruby .hljs-symbol .hljs-string,
+  .hljs-template_tag,
+  .django .hljs-variable,
+  .smalltalk .hljs-class,
+  .hljs-addition,
+  .hljs-flow,
+  .hljs-stream,
+  .bash .hljs-variable,
+  .pf .hljs-variable,
+  .apache .hljs-tag,
+  .apache .hljs-cbracket,
+  .tex .hljs-command,
+  .tex .hljs-special,
+  .erlang_repl .hljs-function_or_atom,
+  .asciidoc .hljs-header,
+  .markdown .hljs-header,
+  .coffeescript .hljs-attribute,
+  .tp .hljs-variable {
+    color: $color-secondary-drk;
+  }
+
+  .smartquote,
+  .hljs-comment,
+  .hljs-annotation,
+  .diff .hljs-header,
+  .hljs-chunk,
+  .asciidoc .hljs-blockquote,
+  .markdown .hljs-blockquote {
+    color: #888;
+  }
+
+  .hljs-number,
+  .hljs-date,
+  .hljs-regexp,
+  .hljs-literal,
+  .hljs-hexcolor,
+  .smalltalk .hljs-symbol,
+  .smalltalk .hljs-char,
+  .go .hljs-constant,
+  .hljs-change,
+  .lasso .hljs-variable,
+  .makefile .hljs-variable,
+  .asciidoc .hljs-bullet,
+  .markdown .hljs-bullet,
+  .asciidoc .hljs-link_url,
+  .markdown .hljs-link_url {
+    color: $color-primary;
+  }
+
+  .hljs-label,
+  .ruby .hljs-string,
+  .hljs-decorator,
+  .hljs-filter .hljs-argument,
+  .hljs-localvars,
+  .hljs-array,
+  .hljs-attr_selector,
+  .hljs-important,
+  .hljs-pseudo,
+  .hljs-pi,
+  .haml .hljs-bullet,
+  .hljs-doctype,
+  .hljs-deletion,
+  .hljs-envvar,
+  .hljs-shebang,
+  .apache .hljs-sqbracket,
+  .nginx .hljs-built_in,
+  .tex .hljs-formula,
+  .erlang_repl .hljs-reserved,
+  .hljs-prompt,
+  .asciidoc .hljs-link_label,
+  .markdown .hljs-link_label,
+  .vhdl .hljs-attribute,
+  .clojure .hljs-attribute,
+  .asciidoc .hljs-attribute,
+  .lasso .hljs-attribute,
+  .coffeescript .hljs-property,
+  .hljs-phony {
+    color: $color-secondary;
+  }
+
+  .hljs-keyword,
+  .hljs-id,
+  .hljs-title,
+  .hljs-built_in,
+  .css .hljs-tag,
+  .hljs-doctag,
+  .smalltalk .hljs-class,
+  .hljs-winutils,
+  .bash .hljs-variable,
+  .pf .hljs-variable,
+  .apache .hljs-tag,
+  .hljs-type,
+  .hljs-typename,
+  .tex .hljs-command,
+  .asciidoc .hljs-strong,
+  .markdown .hljs-strong,
+  .hljs-request,
+  .hljs-status,
+  .tp .hljs-data,
+  .tp .hljs-io {
+    font-weight: bold;
+  }
+
+  .asciidoc .hljs-emphasis,
+  .markdown .hljs-emphasis,
+  .tp .hljs-units {
+    font-style: italic;
+  }
+
+  .nginx .hljs-built_in {
+    font-weight: normal;
+  }
+
+  .coffeescript .javascript,
+  .javascript .xml,
+  .lasso .markup,
+  .tex .hljs-formula,
+  .xml .javascript,
+  .xml .vbscript,
+  .xml .css,
+  .xml .hljs-cdata {
+    opacity: 0.5;
+  }
+  
+}
